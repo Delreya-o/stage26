@@ -26,8 +26,8 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('toread/', include('toread.urls')),
-    path('', RedirectView.as_view(url='/toread/', permanent=True)),
+    path('shelf/', include('shelf.urls')),
+    path('', RedirectView.as_view(url='/admin/', permanent=True)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

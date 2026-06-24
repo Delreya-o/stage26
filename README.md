@@ -49,3 +49,10 @@ sudo systemctl start mariadb.service
 ```bash
 python3 mylibrary/manage.py runserver
 ```
+
+# Création d'un superuser
+***
+```bash
+python3 mylibrary/manage.py createsuperuser
+```
+--> `user`, `user@email.fr`, `password`
