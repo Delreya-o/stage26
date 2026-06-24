@@ -5,8 +5,9 @@ from django.utils.translation import gettext_lazy as gettext
 import uuid
 
 class Author(models.Model):
-    author_id = models.IntegerField(
+    author_id = models.UUIDField(
         primary_key=True,
+        default=uuid.uuid1,
         verbose_name=gettext("Auteur"),
         help_text=gettext("Identifiant de l'auteur"),
         null=False
@@ -152,6 +153,7 @@ class BookInstance(models.Model):
         default=uuid.uuid4,
         help_text='ID unique pour ce livre'
     )
+    
     book = models.ForeignKey('Book',
         on_delete=models.SET_NULL,
         null=True
