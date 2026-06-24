@@ -1,6 +1,6 @@
 echo "* * * * * * MIGRATION * * * * * *"
 echo
-python3 mylibrary/manage.py makemigrations shelf
+python3 mylibrary/manage.py makemigrations
 python3 mylibrary/manage.py migrate
 echo
 echo "* * * * * * Re-RUN * * * * * *"

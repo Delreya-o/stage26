@@ -10,7 +10,9 @@ class Author(models.Model):
         default=uuid.uuid1,
         verbose_name=gettext("Auteur"),
         help_text=gettext("Identifiant de l'auteur"),
-        null=False
+        null=False,
+        unique=True,
+        blank=False,
     )
 
     name = models.TextField(
@@ -30,7 +32,7 @@ class Author(models.Model):
 
     def __str__(self) -> str:
         """Représentation de l'objet."""
-        return self.author_id
+        return f'{self.name} ({self.author_id})'
     
     def get_absolute_url(self):
         """Cette fonction est requise pour détailler le contenu d'un objet."""
@@ -38,16 +40,19 @@ class Author(models.Model):
 
 
 class Publisher(models.Model):
-    publisher_id = models.IntegerField(
+    publisher_id = models.UUIDField(
         primary_key=True,
-        verbose_name=gettext("Auteur"),
-        help_text=gettext("Identifiant de l'auteur"),
-        null=False
+        default=uuid.uuid1,
+        verbose_name=gettext("Maison d'édition"),
+        help_text=gettext("Identifiant de la maison d'édition"),
+        null=False,
+        unique=True,
+        blank=False,
     )
 
     name = models.TextField(
         verbose_name=gettext("Nom"),
-        help_text=gettext("Nom de l'auteur.e"),
+        help_text=gettext("Nom de la maison d'édition.e"),
         # min_length=2,
         max_length=100,
         null=True
@@ -63,7 +68,7 @@ class Publisher(models.Model):
 
     def __str__(self) -> str:
         """Représentation de l'objet."""
-        return self.publisher_id
+        return f'{self.name} ({self.publisher_id})'
 
     def get_absolute_url(self):
         """Cette fonction est requise pour détailler le contenu d'un objet."""
@@ -71,6 +76,13 @@ class Publisher(models.Model):
 
 
 class Book(models.Model):
+    SERIE_TYPE = (
+        ('i', 'inconnu'),
+        ('os', 'one-shot'),
+        ('s', 'serie'),
+        ('hs', 'hors-serie'),
+    )
+
     isbn = models.CharField(
         primary_key=True,
         verbose_name=gettext("ISBN"),
@@ -86,6 +98,14 @@ class Book(models.Model):
         unique=True,
     )
 
+    serie_type = models.CharField(
+        choices=SERIE_TYPE,
+        max_length=2,
+        blank=True,
+        default='i',
+        help_text=gettext('Serie ? One-shot ? Hors-série (/spin-off) ?'),
+    )
+
     author_id = models.ForeignKey(
         to = "Author",
         on_delete=models.SET_NULL,
@@ -98,15 +118,13 @@ class Book(models.Model):
         to = "Publisher",
         on_delete=models.SET_NULL,
         verbose_name=gettext("Maison d'édition"),
-        help_text=gettext("Identifiant de la Maison d'édition"),
+        help_text=gettext("Identifiant de la maison d'édition"),
         null=True
     )
 
     year_pub = models.IntegerField(
         verbose_name=gettext("Année"),
         help_text=gettext("Année de publication"),
-        # min_length=4,
-        max_length=4,
         null=True
     )
 
@@ -127,7 +145,7 @@ class Book(models.Model):
 
     def __str__(self) -> str:
         """Représentation de l'objet."""
-        return self.isbn
+        return f'{self.title} - {self.year_pub} ({self.isbn})'
 
     def natural_key(self) -> tuple[str]:
         """Renvoie la clé naturelle de l'objet."""
@@ -151,29 +169,35 @@ class BookInstance(models.Model):
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
-        help_text='ID unique pour ce livre'
+        help_text='ID unique pour ce livre',
+        null=False,
+        unique=True,
+        blank=False,
     )
     
     book = models.ForeignKey('Book',
         on_delete=models.SET_NULL,
         null=True
     )
-    imprint = models.CharField( max_length=200 )
-
-    due_back = models.DateField(null=True, blank=True )
+    
+    tome_nb = models.IntegerField(
+        blank=True,
+        verbose_name=gettext("Tome n°"),
+        help_text=gettext('Numéro du tome'),
+    )
 
     status = models.CharField(
-        max_length=1,
         choices=READ_STATUS,
+        max_length=1,        
         blank=True,
         default='u',
         help_text='statut',
     )
 
     class Meta:
-        ordering = ['due_back']
+        ordering = ['book', 'tome_nb']
 
     def __str__(self):
         """Fonction requise par Django pour manipuler les objets Book dans la base de données."""
-        return f'{self.id} ({self.book.title})'
+        return f' {self.book.title} - tome {self.tome_nb} [{self.status}] ({self.id})'
 
