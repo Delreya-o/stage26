@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shelf.apps.ShelfConfig'
 ]
 
 MIDDLEWARE = [
@@ -74,8 +75,16 @@ WSGI_APPLICATION = 'mylibrary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.mysql",
+        "OPTIONS": {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+            "database": "bookstore",
+            "user": "user",
+            "password": "password",
+            "host": "localhost",
+            "port": 3306,
+            "charset": "utf8",
+        },
     }
 }
 
