@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-26 10:24+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:11 models.py:112
+msgid "Auteur"
+msgstr ""
+
+#: models.py:12 models.py:113
+msgid "Identifiant de l'auteur"
+msgstr ""
+
+#: models.py:19 models.py:54
+msgid "Nom"
+msgstr ""
+
+#: models.py:20
+msgid "Nom de l'auteur.e"
+msgstr ""
+
+#: models.py:28
+msgid "auteur.e"
+msgstr ""
+
+#: models.py:29
+msgid "auteur.es"
+msgstr ""
+
+#: models.py:46 models.py:64 models.py:120
+msgid "Maison d'édition"
+msgstr ""
+
+#: models.py:47 models.py:121
+msgid "Identifiant de la maison d'édition"
+msgstr ""
+
+#: models.py:55
+msgid "Nom de la maison d'édition.e"
+msgstr ""
+
+#: models.py:65
+msgid "Maisons d'édition"
+msgstr ""
+
+#: models.py:88
+msgid "ISBN"
+msgstr ""
+
+#: models.py:89
+msgid "Code ISBN du livre"
+msgstr ""
+
+#: models.py:95
+msgid "Titre"
+msgstr ""
+
+#: models.py:96
+msgid "Titre du livre"
+msgstr ""
+
+#: models.py:106
+msgid "Serie ? One-shot ? Hors-série (/spin-off) ?"
+msgstr ""
+
+#: models.py:126
+msgid "Année"
+msgstr ""
+
+#: models.py:127
+msgid "Année de publication"
+msgstr ""
+
+#: models.py:132
+msgid "Description"
+msgstr ""
+
+#: models.py:133
+msgid "Description ou résumé du livre"
+msgstr ""
+
+#: models.py:141
+msgid "livre"
+msgstr ""
+
+#: models.py:142
+msgid "livres"
+msgstr ""
+
+#: models.py:185
+msgid "Tome n°"
+msgstr ""
+
+#: models.py:186
+msgid "Numéro du tome"
+msgstr ""
+
+#: templates/bookstore.html:14
+#, python-format
+msgid " Liste recherchée : %(userstr)s"
+msgstr ""

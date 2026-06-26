@@ -1,0 +1,17 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+    <h3>{% translate "Contenu" %}</h3>
+    <ul>
+        <li>author</li>
+        <li>publisher</li>
+        <li>book</li>
+        <li>bookinstance</li>
+    </ul>
+    <form v-on:submit.prevent="search">
+        <input type="text" v-model="userstr" />
+        <button type="submit">{% translate "Afficher" %}</button>
+    </form>
+    <p>{% blocktranslate %} Liste recherchée : {{ userstr }}{% endblocktranslate %}</p>
+
+</html>

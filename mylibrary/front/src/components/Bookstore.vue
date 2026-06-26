@@ -11,6 +11,8 @@
         <button type="submit">Afficher</button>
     </form>
     <p>Liste recherchée : {{ userstr }}</p>
+
+    <p>Pour récupérer, chercher "fetch(" dans d4l (ou dans la doc node js)</p>
 </template>
 <script>
 export default {
